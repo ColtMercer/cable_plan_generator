@@ -3,70 +3,72 @@
 ==========================================================================
 Date: {{ now() | strftime('%Y-%m-%d') }}
 
-REPLACEMENT DEVICE INFORMATION:
------------------------------
-Hostname: {{ device.hostname }}
-Model: {{ device.model }}
-Serial Number: {{ device.serialNumber }}
+[DEVICE VISUALIZATION]
+    ┌──────────────────────────────────────────────────────┐
+    │  {{ device.hostname.center(50) }}  │
+    │  {{ device.model.center(50) }}  │
+    │  SN: {{ device.serialNumber.center(46) }}  │
+    ├──────────────────────────────────────────────────────┤
+    │                                                      │
+    │   [Front Panel View]                                 │
+    │   1   5   9   13  17  21  25  29  33  37  41  45   │
+    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐   │
+    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘   │
+    │   2   6   10  14  18  22  26  30  34  38  42  46   │
+    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐   │
+    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘   │
+    │   3   7   11  15  19  23  27  31  35  39  43  47   │
+    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐   │
+    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘   │
+    │   4   8   12  16  20  24  28  32  36  40  44  48   │
+    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐   │
+    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘   │
+    │                                                      │
+    └──────────────────────────────────────────────────────┘
 
-EXISTING DEVICE INFORMATION:
---------------------------
-Hostname: {{ existing_device.hostname }}
-Model: {{ existing_device.model }}
-Serial Number: {{ existing_device.serialNumber }}
-
-==========================================================================
-                    CABLING INSTRUCTIONS
-==========================================================================
-
-IMPORTANT NOTES:
-- Please verify all cable labels before disconnecting
-- Take pictures of existing cabling if possible
-- Label new cables before starting the replacement
-- Test each connection after moving cables
-
-CABLE PLAN:
------------
+CABLING WORKSHEET:
+=================
 {% for interface in device.interfaces %}
-Interface: {{ interface.name }}
-    Type: {{ interface.type }}
-    Speed: {{ interface.speed }}
-    Connects to: {{ interface.remoteDevice }} - {{ interface.remoteInterface }}
-    Description: {{ interface.description }}
+[Port {{ interface.name.ljust(10) }}] {{ "=" * 50 }}
+    → Remote: {{ interface.remoteDevice }}/{{ interface.remoteInterface }}
+    → Type: {{ interface.type }} | Speed: {{ interface.speed }}
+    → Description: {{ interface.description }}
     
-    Cable Label Information:
-    ----------------------
-    Existing Cable Label: _____________________
-    New Cable Label: _____________________
-    Notes: _________________________________
-
+    Cable Information:
+    ┌────────────────┬────────────────────────────────┐
+    │ Original Label │ [                            ] │
+    │ New Label     │ [                            ] │
+    │ Verified      │ [ ] Yes  [ ] No               │
+    └────────────────┴────────────────────────────────┘
 {% endfor %}
 
-ROLLBACK PROCEDURE:
-------------------
-If testing fails, follow these steps:
-1. Document which cables have been moved
-2. Move cables back to the original device ({{ existing_device.hostname }})
-3. Verify all cables are properly seated
-4. Notify network team immediately
-5. Document any issues encountered
+MIGRATION CHECKLIST:
+==================
+[ ] 1. Take photos of original cabling
+[ ] 2. Label all cables on existing device
+[ ] 3. Prepare new device
+[ ] 4. Create new cable labels
+[ ] 5. Move cables one at a time
+[ ] 6. Verify each connection
+[ ] 7. Test connectivity
+[ ] 8. Update documentation
 
-VERIFICATION CHECKLIST:
----------------------
-□ All cables labeled correctly
-□ All cables seated properly
-□ No bent pins on interfaces
-□ All cable types match interface requirements
-□ Pictures taken of original cabling
-□ All cables moved to new device
-□ Basic connectivity testing completed
+ROLLBACK PLAN:
+=============
+If issues occur:
+1) Stop migration immediately
+2) Document current state
+3) Return cables to original device ({{ existing_device.hostname }})
+4) Verify original connections
+5) Contact network team: _____________________
 
-Notes:
-______________________________________________________________________
-______________________________________________________________________
-______________________________________________________________________
+Notes & Issues:
+______________________________________________________________________________
+______________________________________________________________________________
+______________________________________________________________________________
 
-Technician Name: _____________________
-Date Completed: _____________________
-Time Started: _____________________
-Time Completed: _____________________ 
+Technician: ______________________  Date: ____________  Time: ____________
+
+==========================================================================
+                          END OF CABLE PLAN
+========================================================================== 
