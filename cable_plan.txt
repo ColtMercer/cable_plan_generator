@@ -1,0 +1,85 @@
+==========================================================================
+                    DEVICE REPLACEMENT CABLE PLAN
+==========================================================================
+Date: 2025-04-23
+
+REPLACEMENT DEVICE INFORMATION:
+-----------------------------
+Hostname: leaf-01
+Model: Arista-7050X3-48YC8
+Serial Number: JPE23456789
+
+EXISTING DEVICE INFORMATION:
+--------------------------
+Hostname: leaf-01-old
+Model: Arista-7050X3-48YC8
+Serial Number: JPE12345678
+
+==========================================================================
+                    CABLING INSTRUCTIONS
+==========================================================================
+
+IMPORTANT NOTES:
+- Please verify all cable labels before disconnecting
+- Take pictures of existing cabling if possible
+- Label new cables before starting the replacement
+- Test each connection after moving cables
+
+CABLE PLAN:
+-----------
+
+Interface: Ethernet1/1
+    Type: qsfp28
+    Speed: 100G
+    Connects to: spine-01 - Ethernet5/1
+    Description: Link to Spine-01
+    
+    Cable Label Information:
+    ----------------------
+    Existing Cable Label: _____________________
+    New Cable Label: _____________________
+    Notes: _________________________________
+
+
+Interface: Ethernet1/2
+    Type: qsfp28
+    Speed: 100G
+    Connects to: spine-02 - Ethernet5/1
+    Description: Link to Spine-02
+    
+    Cable Label Information:
+    ----------------------
+    Existing Cable Label: _____________________
+    New Cable Label: _____________________
+    Notes: _________________________________
+
+
+
+ROLLBACK PROCEDURE:
+------------------
+If testing fails, follow these steps:
+1. Document which cables have been moved
+2. Move cables back to the original device (leaf-01-old)
+3. Verify all cables are properly seated
+4. Notify network team immediately
+5. Document any issues encountered
+
+VERIFICATION CHECKLIST:
+---------------------
+□ All cables labeled correctly
+□ All cables seated properly
+□ No bent pins on interfaces
+□ All cable types match interface requirements
+□ Pictures taken of original cabling
+□ All cables moved to new device
+□ Basic connectivity testing completed
+
+Notes:
+______________________________________________________________________
+______________________________________________________________________
+______________________________________________________________________
+
+Technician Name: _____________________
+Date Completed: _____________________
+Time Started: _____________________
+Time Completed: _____________________ 

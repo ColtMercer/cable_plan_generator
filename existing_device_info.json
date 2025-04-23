@@ -1,0 +1,27 @@
+{
+  "data": {
+    "device": {
+      "hostname": "leaf-01-old",
+      "model": "Arista-7050X3-48YC8",
+      "serialNumber": "JPE12345678",
+      "interfaces": [
+        {
+          "name": "Ethernet1/1",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-01",
+          "remoteInterface": "Ethernet5/1",
+          "description": "Link to Spine-01"
+        },
+        {
+          "name": "Ethernet1/2",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-02",
+          "remoteInterface": "Ethernet5/1",
+          "description": "Link to Spine-02"
+        }
+      ]
+    }
+  }
+} 

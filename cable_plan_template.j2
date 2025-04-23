@@ -1,0 +1,72 @@
+==========================================================================
+                    DEVICE REPLACEMENT CABLE PLAN
+==========================================================================
+Date: {{ now() | strftime('%Y-%m-%d') }}
+
+REPLACEMENT DEVICE INFORMATION:
+-----------------------------
+Hostname: {{ device.hostname }}
+Model: {{ device.model }}
+Serial Number: {{ device.serialNumber }}
+
+EXISTING DEVICE INFORMATION:
+--------------------------
+Hostname: {{ existing_device.hostname }}
+Model: {{ existing_device.model }}
+Serial Number: {{ existing_device.serialNumber }}
+
+==========================================================================
+                    CABLING INSTRUCTIONS
+==========================================================================
+
+IMPORTANT NOTES:
+- Please verify all cable labels before disconnecting
+- Take pictures of existing cabling if possible
+- Label new cables before starting the replacement
+- Test each connection after moving cables
+
+CABLE PLAN:
+-----------
+{% for interface in device.interfaces %}
+Interface: {{ interface.name }}
+    Type: {{ interface.type }}
+    Speed: {{ interface.speed }}
+    Connects to: {{ interface.remoteDevice }} - {{ interface.remoteInterface }}
+    Description: {{ interface.description }}
+    
+    Cable Label Information:
+    ----------------------
+    Existing Cable Label: _____________________
+    New Cable Label: _____________________
+    Notes: _________________________________
+
+{% endfor %}
+
+ROLLBACK PROCEDURE:
+------------------
+If testing fails, follow these steps:
+1. Document which cables have been moved
+2. Move cables back to the original device ({{ existing_device.hostname }})
+3. Verify all cables are properly seated
+4. Notify network team immediately
+5. Document any issues encountered
+
+VERIFICATION CHECKLIST:
+---------------------
+□ All cables labeled correctly
+□ All cables seated properly
+□ No bent pins on interfaces
+□ All cable types match interface requirements
+□ Pictures taken of original cabling
+□ All cables moved to new device
+□ Basic connectivity testing completed
+
+Notes:
+______________________________________________________________________
+______________________________________________________________________
+______________________________________________________________________
+
+Technician Name: _____________________
+Date Completed: _____________________
+Time Started: _____________________
+Time Completed: _____________________ 
