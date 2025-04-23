@@ -1,6 +1,6 @@
 # Network Device Cable Plan Generator
 
-This tool generates detailed cable plans for network device replacements, specifically designed for data center technicians performing EOL (End of Life) device replacements. This is concept code for turning a GraphQL query from Nautobot or Netbox into a cable plan.
+This tool generates detailed cable plans for network device replacements, specifically designed for data center technicians performing EOL (End of Life) device replacements. This is concept code for turning a GraphQL query from Nautobot or Netbox into a cable plan that can be used to move cables and backout to previous state quickly if needed.
 
 ## Overview
 
