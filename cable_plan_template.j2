@@ -8,66 +8,62 @@ Date: {{ now() | strftime('%Y-%m-%d') }}
     │  {{ device.hostname.center(50) }}  │
     │  {{ device.model.center(50) }}  │
     │  SN: {{ device.serialNumber.center(46) }}  │
-    ├──────────────────────────────────────────────────────┤
-    │                                                      │
-    │   [Front Panel View]                                 │
-    │   1   5   9   13  17  21  25  29  33  37  41  45   │
-    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐   │
-    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘   │
-    │   2   6   10  14  18  22  26  30  34  38  42  46   │
-    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐   │
-    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘   │
-    │   3   7   11  15  19  23  27  31  35  39  43  47   │
-    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐   │
-    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘   │
-    │   4   8   12  16  20  24  28  32  36  40  44  48   │
-    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐   │
-    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘  └┘   │
-    │                                                      │
-    └──────────────────────────────────────────────────────┘
+    ├──────────────────────────────────┤
+    │   [Front Panel View]             │
+    │   1   5   9   13  17  21  25    │
+    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐    │
+    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘    │
+    │   2   6   10  14  18  22  26    │
+    │   ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐  ┌┐    │
+    │   └┘  └┘  └┘  └┘  └┘  └┘  └┘    │
+    └──────────────────────────────────┘
 
 CABLING WORKSHEET:
 =================
-{% for interface in device.interfaces %}
-[Port {{ interface.name.ljust(10) }}] {{ "=" * 50 }}
-    → Remote: {{ interface.remoteDevice }}/{{ interface.remoteInterface }}
-    → Type: {{ interface.type }} | Speed: {{ interface.speed }}
-    → Description: {{ interface.description }}
-    
-    Cable Information:
-    ┌────────────────┬────────────────────────────────┐
-    │ Original Label │ [                            ] │
-    │ New Label     │ [                            ] │
-    │ Verified      │ [ ] Yes  [ ] No               │
-    └────────────────┴────────────────────────────────┘
+{% for interfaces in device.interfaces|batch(3) %}
+┌────────────────────┬────────────────────┬────────────────────┐
+│ Port: {{ interfaces[0].name.ljust(10) }}│{%- if interfaces|length > 1 %} Port: {{ interfaces[1].name.ljust(10) }}│{%- endif %}{%- if interfaces|length > 2 %} Port: {{ interfaces[2].name.ljust(10) }}│{%- endif %}
+├────────────────────┼────────────────────┼────────────────────┤
+│ → {{ interfaces[0].remoteDevice }}/{{ interfaces[0].remoteInterface.ljust(6) }}│{%- if interfaces|length > 1 %} → {{ interfaces[1].remoteDevice }}/{{ interfaces[1].remoteInterface.ljust(6) }}│{%- endif %}{%- if interfaces|length > 2 %} → {{ interfaces[2].remoteDevice }}/{{ interfaces[2].remoteInterface.ljust(6) }}│{%- endif %}
+├────────────────────┼────────────────────┼────────────────────┤
+│ → {{ interfaces[0].type }} @ {{ interfaces[0].speed }}│{%- if interfaces|length > 1 %} → {{ interfaces[1].type }} @ {{ interfaces[1].speed }}│{%- endif %}{%- if interfaces|length > 2 %} → {{ interfaces[2].type }} @ {{ interfaces[2].speed }}│{%- endif %}
+├────────────────────┼────────────────────┼────────────────────┤
+│ Old Label:[______] │{%- if interfaces|length > 1 %} Old Label:[______] │{%- endif %}{%- if interfaces|length > 2 %} Old Label:[______] │{%- endif %}
+├────────────────────┼────────────────────┼────────────────────┤
+│ New Label:[______] │{%- if interfaces|length > 1 %} New Label:[______] │{%- endif %}{%- if interfaces|length > 2 %} New Label:[______] │{%- endif %}
+├────────────────────┼────────────────────┼────────────────────┤
+│ Verified:[ ]Y[ ]N  │{%- if interfaces|length > 1 %} Verified:[ ]Y[ ]N  │{%- endif %}{%- if interfaces|length > 2 %} Verified:[ ]Y[ ]N  │{%- endif %}
+└────────────────────┴────────────────────┴────────────────────┘
 {% endfor %}
 
-MIGRATION CHECKLIST:
-==================
-[ ] 1. Take photos of original cabling
-[ ] 2. Label all cables on existing device
-[ ] 3. Prepare new device
-[ ] 4. Create new cable labels
-[ ] 5. Move cables one at a time
-[ ] 6. Verify each connection
-[ ] 7. Test connectivity
-[ ] 8. Update documentation
+MIGRATION STEPS:                          VERIFICATION CHECKLIST:
+================                          =====================
+1. Pre-Migration:                         [ ] Photos taken
+   [ ] Take photos                        [ ] Labels verified
+   [ ] Label existing cables              [ ] Cables seated properly
+   [ ] Prepare new device                 [ ] No bent pins
+                                         [ ] Types match
+2. Migration:                             [ ] Basic connectivity
+   [ ] Move cables one at a time          
+   [ ] Verify each connection            CONTACT INFO:
+   [ ] Test connectivity                 ============
+                                        Network Team: ______________
+3. Post-Migration:                       Emergency #: ______________
+   [ ] Update documentation              
+   [ ] Final testing                     
 
-ROLLBACK PLAN:
-=============
+ROLLBACK PROCEDURE:
+==================
 If issues occur:
 1) Stop migration immediately
-2) Document current state
-3) Return cables to original device ({{ existing_device.hostname }})
-4) Verify original connections
-5) Contact network team: _____________________
+2) Document current state: ________________________________________________
+3) Return cables to {{ existing_device.hostname }}
+4) Contact network team
 
-Notes & Issues:
-______________________________________________________________________________
-______________________________________________________________________________
-______________________________________________________________________________
+Notes: ________________________________________________________________
+      ________________________________________________________________
 
-Technician: ______________________  Date: ____________  Time: ____________
+Technician: _________________ Date: __________ Time: Start_____ End_____
 
 ==========================================================================
                           END OF CABLE PLAN

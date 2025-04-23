@@ -6,20 +6,76 @@
       "serialNumber": "JPE23456789",
       "interfaces": [
         {
-          "name": "Ethernet1/1",
+          "name": "Eth1/1",
           "type": "qsfp28",
           "speed": "100G",
           "remoteDevice": "spine-01",
-          "remoteInterface": "Ethernet5/1",
+          "remoteInterface": "Eth5/1",
           "description": "Link to Spine-01"
         },
         {
-          "name": "Ethernet1/2",
+          "name": "Eth1/2",
           "type": "qsfp28",
           "speed": "100G",
           "remoteDevice": "spine-02",
-          "remoteInterface": "Ethernet5/1",
+          "remoteInterface": "Eth5/1",
           "description": "Link to Spine-02"
+        },
+        {
+          "name": "Eth2/1",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-03",
+          "remoteInterface": "Eth1/1",
+          "description": "Link to Spine-03"
+        },
+        {
+          "name": "Eth2/2",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-04",
+          "remoteInterface": "Eth1/1",
+          "description": "Link to Spine-04"
+        },
+        {
+          "name": "Eth3/1",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-01",
+          "remoteInterface": "Eth5/2",
+          "description": "Link to Spine-01"
+        },
+        {
+          "name": "Eth3/2",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-02",
+          "remoteInterface": "Eth5/2",
+          "description": "Link to Spine-02"
+        },
+        {
+          "name": "Eth4/1",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-03",
+          "remoteInterface": "Eth5/2",
+          "description": "Link to Spine-03"
+        },
+        {
+          "name": "Eth4/2",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-04",
+          "remoteInterface": "Eth5/2",
+          "description": "Link to Spine-04"
+        },
+        {
+          "name": "Eth5/1",
+          "type": "qsfp28",
+          "speed": "100G",
+          "remoteDevice": "spine-01",
+          "remoteInterface": "Eth5/3",
+          "description": "Link to Spine-01"
         }
       ]
     }
